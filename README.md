@@ -1,6 +1,6 @@
 # Drug_Discovery Protocol
 ## 폴더 설명
-### Workflow : 구조&화학적특징 유사도 + AI 기반 Virtual Screening을 위한 코드 및 일련의 순서를 정리해둔 폴더
+### Workflow : 구조&화학적특징 유사도 + AI 기반 Virtual Screening을 위한 코드 및 일련의 순서를 정리해둔 폴더(Step 0~12)
 ### MolecularDynamics : Virtual Screening 후 검증을 위한 분자동역학 시뮬레이션 코드를 정리해둔 폴더
 ### package : 사용되는 코드 중 주요 클래스 및 함수를 모듈화하여 정리한 폴더
 
@@ -80,5 +80,4 @@
 #### 12 단계 : 상위 후보물질 10개와 참조물질를 비교하기 위한 데이터 통합 단계
  - 12 : 상위 후보물질 10개가 초기 어떤 그룹에서부터 선별된 화합물인지 확인(Tanimoto인지 또는 K-means에 의해 선별 되었는지 확인)하고 참조물질을 DataFrame 마지막에 위치시켜 비교하도록 데이터 구축.
 
-0 ~ 12 단계 : 
 -----
