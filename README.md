@@ -81,3 +81,15 @@
  - 12 : 상위 후보물질 10개가 초기 어떤 그룹에서부터 선별된 화합물인지 확인(Tanimoto인지 또는 K-means에 의해 선별 되었는지 확인)하고 참조물질을 DataFrame 마지막에 위치시켜 비교하도록 데이터 구축.
 
 -----
+
+## Molecular Dynamics simulation
+#### 1 단계 : 분자동역학 시뮬레이션 수행 코드
+ - 시뮬레이션 환경 조건 : PME, nonbondedCutoff = 1.0 unit/nanometers, constraints = HBonds, total simulatio time : 50 ns, 2 fs/frame, temperature = 309.65 kelvin, write interval = 50000 steps, log interval = 50000 steps
+#### 2 단계 : 시뮬레이션 결과 전처리 및 RMSD 결과 분석
+ - PME 조건 하에 수행되었기 때문에 상자를 벗어나는 부위를 하나로 이어주고 상자 중앙에 위치시켜 줄 필요가 있음.
+ - RMSD 그래프 생성
+#### 3 단계 : RMSF 결과 분석
+#### 4 단계 : Hydrogen bonds 결과 분석
+ - 수소 결합 형성 잔기 식별, 시뮬레이션 동안 생성되는 수소 결합 수, 거리 변화, 빈도 분석
+#### 5 단계 : Alchemical Free Energy 계산
+ - 시뮬레이션 환경 조건 : pressure = 1 atomspheres, temperature = 309.65 kelven, collision rate = 1.0/picoseceonds, barostat = MonteCarloBarostat, energy function = 코드 참고, steps = 5000, iterations = 100, alchemical lambda schedule = 1.0 ~ 0.0, 10
