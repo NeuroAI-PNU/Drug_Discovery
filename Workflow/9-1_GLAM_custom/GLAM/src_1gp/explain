@@ -1,0 +1,17 @@
+1. dataset.py에서 dataset_name = {}에서 "c" : [] <-- 이부분에 테스트할 데이터셋(tanimoto <-- 말이 tanimoto 이지 tanimoto+kmeans 다 들어가 있는 화합물 셋임)
+2. glam.py에서 auto_blend(self) -> auto_blend(self, custom_dataset=None) 으로 수정, 
+3. glam.py에서 blend_and_inference() -> blend_and_inverence(custom_dataset=custom_dataset)
+4. trainer.py에서 blend_and_inference 에서 custom_dataset 명명이 없어서 custom_dataset = custom_dataset 이라는 코드 한 줄 넣어줘야함.
+5. trainer.py에서 _blend_and_inference(ids, configs, custom_dataset=None, log=print) 에서 _blend_end_inference(ids, configs, custom_dataset, log=print)로 수정
+6. trainer.py에서 custom_dataset이 있으니 _blend_and_inference 에서 if custom_dataset is not None: 부분에서 코드를 적절히 짜줘야함
+  - custom_dataset이 있으므로, Dataset()을 통해 custom_dataset을 processing 하는 과정을 추가하고, 그 데이터를 로딩 하도록 해야함
+  - if custom_dataset is not None:
+        processed_custom_dataset = Dataset(args.dataset_root, dataset = custom_dataset, split_seed = args.split_seed)
+        trainer.test_dataloader = DataLoader(processed_custom_dataset, batch_size=32)
+        log("Customed test dataset loaded!")
+7. trainer.py에서 class TrainerMolBinaryClassificationbNANBCE(Trainer): 에서 def valid_iterations_only_predresult(self, mode='valid')를 새로 만들어서 사용함
+    -> def valid_iterations(self, mode='valid') 전체 코드를 기반으로 실험자가 필요한 부분만 살려서 새로 만드는 함수 코드임
+    -> 결론적으로 ys_xcore 값만 필요하기에 losses, ys_true, ys_score = [], [], [] 에서 ys_score = [] 만 살림
+    -> mol_batch, y_score, y_true, loss, ys_score, mean_loss, ..., 에서 역시 mol_batch, y_score, ys_score 만 필요하기에 나머지 부분은 주석 처리
+    -> if mode  == 'inference' : 에서 역시 ys_score 만 return 되도록 ys_ture는 주석 처리
+8. trainer.py에서 output = trainer.valid_iterations(mode='inference') -> output = trainer.

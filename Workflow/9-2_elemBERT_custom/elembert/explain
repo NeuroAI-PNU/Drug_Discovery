@@ -1,0 +1,4 @@
+1. element_classifier.ipynb 코드를 통해 우리가 평가할 custom data를 element로 분류하는 작업을 수행해야함
+2. Tox21 데이터셋에는 12가지 항목에 대해 독성 지수를 나타내고 있기 때문에 이와 동일하게 우리 custom data에도 12가지에 대해 예측 지수를 받아야 함. -> 여기서는 elembert_classification.ipynb 코드를 이용해서 12가지 항목에 대해 각각 예측 결과를 받음. 요령은 동일하기 때문에 다음과 같이 하나에 대해서만 설명.
+    2.1. Config은 기존대로 정의해주고 ds = "" 입력시 #에 나타낸 것 중 하나 골라서 명명 해주면 됨.
+    2.2. train 데이터셋 설정 하고 나면 항상 custom data에 대해서도 동일한 처리를 수행 해줌. custom data에 대한 수행 내용은 모두 # custom data로 나타내어 있음.
